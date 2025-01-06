@@ -5,10 +5,20 @@ from transformers import pipeline
 import spacy
 import numpy as np
 from scipy.optimize import minimize
+import pickle
 
 app = Flask(__name__)
 
 ##### Credit Risk Analysis #####
+# Load models
+with open('decision_tree_model.pkl', 'rb') as file:
+    decision_tree_model = pickle.load(file)
+
+with open('knn_model.pkl', 'rb') as file:
+    knn_model = pickle.load(file)
+
+with open('random_forest_model.pkl', 'rb') as file:
+    random_forest_model = pickle.load(file)
 
 ####################### Ro-bo advisors #######################
 #### I have pre-calculated the following data and export as csv files ####
@@ -26,11 +36,31 @@ stock_prices = pd.Series(stock_prices_df['Stock Price'].values, index=stock_pric
 ##############################################
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    prediction_text = None
     if request.method == 'POST':
-        article_text = request.form['article_text']
-        results = analyze_article(article_text)
-        return render_template('index.html', results=results, submitted=True)
-    return render_template('index.html', submitted=False)
+        # Retrieve form data
+        loan_duration = float(request.form['loan_duration'])
+        loan_amount = float(request.form['loan_amount'])
+        installment_percent = float(request.form['installment_percent'])
+        age = float(request.form['age'])
+        existing_credits_count = float(request.form['existing_credits_count'])
+        model_type = request.form['model_type']
+
+        # Combine input data into a numpy array
+        input_data = np.array([[loan_duration, loan_amount, installment_percent, age, existing_credits_count]])
+
+        # Select and apply the chosen model
+        if model_type == 'decision_tree':
+            prediction = decision_tree_model.predict(input_data)
+        elif model_type == 'knn':
+            prediction = knn_model.predict(input_data)
+        elif model_type == 'random_forest':
+            prediction = random_forest_model.predict(input_data)
+
+        # Convert prediction to readable text
+        prediction_text = 'Risk' if prediction[0] == 1 else 'No Risk'
+
+    return render_template('index.html', prediction_text=prediction_text)
 
 @app.route('/robo', methods=['GET', 'POST'])
 def robo_advisor():
