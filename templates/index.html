@@ -186,6 +186,8 @@ let amountInput = document.getElementById('loan_amount');
 let installmentInput = document.querySelector('#installment_percent');
 let ageInput = document.getElementById("age");
 let creditInput = document.querySelector('#existing_credits_count');
+let modelSelect = document.getElementById("model_type");
+
 let error = document.getElementById("errorMessage");
 
 function formValidation(event) {
@@ -197,6 +199,7 @@ function formValidation(event) {
     let installment = parseFloat(installmentInput.value);
     let age = parseFloat(ageInput.value);
     let credit = parseFloat(creditInput.value);
+    let model = modelSelect.value;
 
     // Validate inputs
     if (!duration || duration < 1 || duration > 64) {
