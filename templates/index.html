@@ -114,7 +114,7 @@
         }
 
         #errorMessage {
-            color: #6d08e8;
+            color: #fff370;
             font-weight: bold;
             margin-top: 10px;
             display: none;
@@ -217,6 +217,10 @@ function formValidation(event) {
 
     if (!credit || credit < 1 || credit > 3) {
         errors += 'Existing credit counts must be between 1 and 3.<br>';
+    }
+
+    if (!model) {
+        errors += 'You must select a model for prediction.<br>';
     }
 
     // Display errors or submit form
