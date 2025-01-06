@@ -1,1 +1,1 @@
-# financial_analyzer
+# Financial Analyzer
