@@ -118,6 +118,7 @@
             font-weight: bold;
             margin-top: 10px;
             display: none;
+            margin-bottom: 10px;
         }
 
         li {
@@ -144,7 +145,7 @@
     {% endif %}
 
     <form action="/" method="post">
-        <label for="loan_duration">Loan Duration (in months):</label>
+        <label for="loan_duration">Loan Duration (in months, at most 64 months):</label>
         <input type="number" step="any" name="loan_duration" id="loan_duration" required><br><br>
 
         <label for="loan_amount">Loan Amount (in dollars, at least 200$):</label>
@@ -153,7 +154,7 @@
         <label for="installment_percent">Installment Percent (usually 1% - 5%):</label>
         <input type="number" step="any" name="installment_percent" id="installment_percent" required><br><br>
 
-        <label for="age">Age:</label>
+        <label for="age">Age (between 18 and 90):</label>
         <input type="number" step="any" name="age" id="age" min="18" max="100" required><br><br>
         <span id="ageError" style="color: red; display: none;">Please enter an age between 18 and 100.</span>
 
