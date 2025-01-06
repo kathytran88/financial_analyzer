@@ -31,7 +31,7 @@
             padding-right: 50px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(196, 113, 232, 0.1);
-            max-width: 400px;
+            max-width: 800px;
             margin: 20px auto;
             margin-bottom: 90px;
         }
@@ -114,7 +114,7 @@
         }
 
         #errorMessage {
-            color: red;
+            color: #6d08e8;
             font-weight: bold;
             margin-top: 10px;
             display: none;
@@ -161,11 +161,14 @@
         <input type="number" step="any" name="existing_credits_count" id="existing_credits_count" required><br><br>
 
         <label for="model_type">Choose a model:</label>
-        <select name="model_type" id="model_type">
+
+        <select name="model_type" id="model_type" required>
+            <option value="" disabled selected>Select a model</option>
             <option value="decision_tree">Decision Tree</option>
             <option value="knn">K Nearest Neighbors</option>
             <option value="random_forest">Random Forest</option>
-        </select><br><br>
+        </select>
+        
 
         <div id="errorMessage"></div>
 
