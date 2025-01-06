@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 import pickle
 
 def train_decision_tree():
-    df = pd.read_csv('./flask_app/credit-risk-dataset.csv')
+    df = pd.read_csv('./credit-risk-dataset.csv')
     
     X = df[['LoanDuration', 'LoanAmount', 'InstallmentPercent', 'Age', 'ExistingCreditsCount']].values
     
