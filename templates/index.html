@@ -26,15 +26,17 @@
             color: #ff8b25;
         }
         form {
-            background-color: #8b6468;
-            padding: 40px;
-            padding-right: 50px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(196, 113, 232, 0.1);
-            max-width: 800px;
-            margin: 20px auto;
-            margin-bottom: 90px;
-        }
+    background-color: #8b6468;
+    padding: 40px;
+    padding-right: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(196, 113, 232, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    margin-bottom: 90px;
+    min-height: 500px; /* Ensure the form has a minimum height */
+}
+
         label {
             display: block;
             margin-bottom: 8px;
@@ -60,7 +62,7 @@
         input[type="submit"]:hover {
             background-color: #c51159;
         }
-        h3, h1, h2, h4 {
+        h3, h1, h2, h4, p {
             font-family: sans-serif;
             text-align: center;
         }
@@ -76,7 +78,7 @@
             margin-top: 50px;
             margin-bottom: 80px;
         }
-        h1, h3 {
+        h1, h2{
             color: #7e212a;
             font-weight: bold;
         }
@@ -96,11 +98,16 @@
             margin-top: 30px;
         }
         .result-card {
-            margin-top: 20px;
-            border: 1px solid #8b6468;
-            border-radius: 10px;
-            padding: 20px;
-        }
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border: 1px solid #8b6468;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 50px; /* Prevent collapsing when empty */
+}
+
         .footer {
             position: fixed;
             bottom: 0;
@@ -137,12 +144,17 @@
             </div>
         </div>
     </nav>
-    <h1>Credit Risk Prediction</h1>
-    <h4><b>Description: </b>Built 3 machine learning models to predict whether a loan made by a customer to a bank is risky or not</h4>
+    <h2>Credit Risk Prediction</h2>
+    <p><b>Description: </b>Built 3 machine learning models to predict whether a loan made by a customer to a bank is risky or not</p>
     
-    {% if prediction_text %}
-    <h3>{{ prediction_text }}</h3>
-    {% endif %}
+    <!--Output-->
+    <div class="result-card">
+        <h3><b>Prediction:</b></h3>
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+    
 
     <form action="/" method="post">
         <label for="loan_duration">Loan Duration (in months, at most 64 months):</label>

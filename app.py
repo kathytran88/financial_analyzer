@@ -58,7 +58,7 @@ def index():
             prediction = random_forest_model.predict(input_data)
 
         # Convert prediction to readable text
-        prediction_text = 'Risk' if prediction[0] == 1 else 'No Risk'
+        prediction_text = 'Risky' if prediction[0] == 1 else 'Not Risky'
 
     return render_template('index.html', prediction_text=prediction_text)
 
