@@ -147,7 +147,7 @@
         <label for="loan_duration">Loan Duration (in months):</label>
         <input type="number" step="any" name="loan_duration" id="loan_duration" required><br><br>
 
-        <label for="loan_amount">Loan Amount (in dollars):</label>
+        <label for="loan_amount">Loan Amount (in dollars, at least 200$):</label>
         <input type="number" step="any" name="loan_amount" id="loan_amount" required><br><br>
 
         <label for="installment_percent">Installment Percent (usually 1% - 5%):</label>
@@ -167,7 +167,9 @@
             <option value="random_forest">Random Forest</option>
         </select><br><br>
 
-        <input type="submit" value="Predict">
+        <div id="errorMessage"></div>
+
+        <input type="submit" value="Predict" id='input_form_btn'>
     </form>
 
     <div class="footer">
@@ -175,17 +177,65 @@
     </div>
 
 <script>
-    document.getElementById("myForm").addEventListener("submit", function(event) {
-      var ageInput = document.getElementById("age");
-      var ageError = document.getElementById("ageError");
-  
-      if (ageInput.value < 18 || ageInput.value > 100) {
-        ageError.style.display = "inline";
-        event.preventDefault(); // Prevent form submission
-      } else {
-        ageError.style.display = "none";
-      }
-    });
+    let button = document.getElementById("input_form_btn");
+    let durationInput = document.getElementById('loan_duration');
+    let amountInput = document.getElementById('loan_amount');
+    let installmentInput = document.querySelector('#installment_percent');
+    let ageInput = document.getElementById("age");
+    let creditInput = document.querySelector('#existing_credits_count');
+
+    function formValidation(event) {
+    event.preventDefault();
+
+    // Check if users fill out all required inputs
+    if (!duration || !amount || !installment || !ageInput || !credit) {
+        error.innerHTML = 'Cannot have missing values.';
+        error.style.display = "block";
+    } else {
+        let errors = ''; 
+        let duration = parseFloat(durationInput.value);
+        let amount = parseInt(amountInput.value);
+        let installment = parseFloat(installmentInput.value);
+        let age = parseFloat(ageInput.value);
+        let credit = parseFloat(creditInput.value);
+
+        // Validate inputs 
+        if (duration < 1 || duration > 64) {
+            errors += 'Loan duration has to be at least 1 month and at most 64 months.<br>';
+        }
+
+        if (amount < 200) {
+            errors += 'Loan amount has to be at least 200$<br>';
+        }
+
+        if (installment < 1 || installment > 5) {
+            errors += 'Installment percent has to be from 1% to 5%<br>';
+        }
+        
+        if (age < 18 || age > 90) {
+            errors += 'Age has to be from 18 to 90 years old<br>';
+        }
+
+        if (credit < 1 || credit > 3) {
+            errors += 'Existing credit counts have to be between 1 and 3<br>';
+        }
+
+        // If there are any errors
+        if (errors) {
+            error.innerHTML = errors; 
+            error.style.display = "block";
+        } else {
+            error.innerHTML = ''; 
+            error.style.display = "none"; 
+            // Allow form submission
+            event.target.form.submit();
+        }
+    }
+}
+
+    button.addEventListener('click', formValidation);
+
+      
   </script>
 </body>
 </html>
