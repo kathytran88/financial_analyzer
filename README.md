@@ -5,7 +5,9 @@
 ### Project Overview
 <b>1/ Robo-advisor</b><br>
 - Built a robo-advisor to recommend top 5 portfolios with the lowest risk & highest return based on users' input (initial investment, duration, target return).<br>
-- Used the Modern Portfolio Theory to calculate annual returns, annual risks, a covariance matrix & efficient frontier.<br>
+- Leveraged yfinance API to fetch and analyze historical stock prices for S&P 500 companies.<br>
+- Calculated annual returns, annual risks, covariance matrix to measure stock correlations. and an efficient frontier.<br>
+- Applied Modern Portfolio Theory (MPT) to simulate 10,000+ random portfolios<br>
 - Identified top-performing portfolios based on Sharpe Ratios using Numpy for matrix operations.<br>
 
 <b>2/ Credit Risk Analysis</b><br>
