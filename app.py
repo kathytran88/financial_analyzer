@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import pandas as pd
 import yfinance as yf
-from transformers import pipeline
-import spacy
 import numpy as np
 from scipy.optimize import minimize
 import pickle
