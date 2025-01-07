@@ -27,19 +27,18 @@
         }
         form {
     background-color: #8b6468;
-    padding: 40px;
-    padding-right: 50px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(196, 113, 232, 0.1);
     max-width: 800px;
     margin: 20px auto;
     margin-bottom: 90px;
-    min-height: 500px; /* Ensure the form has a minimum height */
+    min-height: 300px; /* Ensure the form has a minimum height */
 }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 3px;
             font-weight: bold;
         }
         input[type="number"],
@@ -83,7 +82,7 @@
             font-weight: bold;
         }
         .form-control {
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
         .navbar {
             background-color: #8b6468;
@@ -149,9 +148,9 @@
     
     <!--Output-->
     <div class="result-card">
-        <h3><b>Prediction:</b></h3>
+        <h5><b>Prediction:</b></h5>
         {% if prediction_text %}
-            <h3>{{ prediction_text }}</h3>
+            <h5>{{ prediction_text }}</h5>
         {% endif %}
     </div>
     
