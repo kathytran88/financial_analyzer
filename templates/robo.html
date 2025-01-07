@@ -60,6 +60,11 @@
         li {
             color: #6d08e8;
         }
+
+        #heading2 {
+            margin-top: 30px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -89,28 +94,7 @@
 
             <li>Optimization => matrix operations (NumPy) & covariance analysis to identify portfolios that satisfy user-defined constraints, such as achieving a target annualized return within the given investment budget.</li>
         </p>
-<br>
-            <h2 class="text-center">Try it Out</h2>
-        <!-- Form for user input -->
-        <form method="POST">
-            <div class="form-group">
-                <label for="initial_investment">Initial Investment in USD (at least 50$):</label>
-                <input type="number" id="initial_investment" name="initial_investment" class="form-control" placeholder="Enter initial investment amount" required>
-            </div>
-            <div class="form-group">
-                <label for="duration">Investment Duration in years (at least 1 year):</label>
-                <input type="number" id="duration" name="duration" class="form-control" placeholder="Enter duration in years" required>
-            </div>
-            <div class="form-group">
-                <label for="target_return">Target Return in USD (larger than initial investment and cannot be unreasonably large):</label>
-                <input type="number" id="target_return" name="target_return" class="form-control" placeholder="Enter target return amount" required>
-            </div>
-
-            <div id="errorMessage"></div>
-            <button type="submit" id='input_form_btn' class="btn btn-primary w-100" style="background-color: #8b6468;">Get Recommendations</button>
-        </form>
-
-        {% if portfolios %}
+{% if portfolios %}
     <div class="result-card">
         <h3>Top Portfolios</h3>
         {% for portfolio in portfolios %}
@@ -132,6 +116,31 @@
         {% endfor %}
     </div>
 {% endif %}
+
+{% if error_msg %}
+    <div class="alert alert-danger">{{ error_msg }}</div>
+{% endif %}
+
+            <h2 class="text-center" id="heading2">Try it Out</h2>
+        <!-- Form for user input -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="initial_investment">Initial Investment in USD (at least 50$):</label>
+                <input type="number" id="initial_investment" name="initial_investment" class="form-control" placeholder="Enter initial investment amount" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Investment Duration in years (at least 1 year):</label>
+                <input type="number" id="duration" name="duration" class="form-control" placeholder="Enter duration in years" required>
+            </div>
+            <div class="form-group">
+                <label for="target_return">Target Return in USD (larger than initial investment and cannot be unreasonably large):</label>
+                <input type="number" id="target_return" name="target_return" class="form-control" placeholder="Enter target return amount" required>
+            </div>
+
+            <div id="errorMessage"></div>
+            <button type="submit" id='input_form_btn' class="btn btn-primary w-100" style="background-color: #8b6468;">Get Recommendations</button>
+            
+        </form>
 
     <div class="footer">
         Kathy Tran's project

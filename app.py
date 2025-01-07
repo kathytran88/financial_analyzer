@@ -141,6 +141,12 @@ def robo_advisor():
                 portfolios_df, required_return, stock_prices, initial
             )
 
+            if top_5_portfolios.empty:
+                return render_template(
+                    "robo.html", 
+                    error_msg="No portfolio satisfies your constraints. Please increase duration or decrease target return."
+                )
+
             def calculate_quantities(top_5_portfolios, stock_prices, initial):
                 portfolio_details = []
 
@@ -191,7 +197,7 @@ def robo_advisor():
                 return portfolio_details
 
             portfolio_details = calculate_quantities(top_5_portfolios, stock_prices, initial)
-
+            
             # ouput results
             return render_template(
                 'robo.html',
@@ -204,7 +210,7 @@ def robo_advisor():
         except Exception as e:
             flash(f"An error occurred: {e}", "danger")
             return redirect(url_for('robo_advisor'))
-
+            
     return render_template('robo.html', portfolios=None)
 
 @app.route('/analysis', methods=['GET'])
