@@ -38,6 +38,11 @@ function formValidation(event) {
         }
 
         const ratio = target / initial;
+
+        if (ratio >= 1.2 && ratio < 1.4 && duration < 2) {
+            errors += `Your target (${target}) is ${ratio.toFixed(2)}× the initial (${initial}). ` +
+                      `You must have at least 2 years for such a return.<br>`;
+        }
         if (ratio >= 1.4 && ratio < 1.7 && duration < 4) {
             errors += `Your target (${target}) is ${ratio.toFixed(2)}× the initial (${initial}). ` +
                       `You must have at least 4 years for such a return.<br>`;
