@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import pandas as pd
 import yfinance as yf
 import numpy as np
-from scipy.optimize import minimize
+from scipy.optimize import minimize 
 import pickle
 
 app = Flask(__name__)
@@ -216,5 +216,4 @@ def analysis():
     return render_template('analysis.html')
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=5000)
+    app.run(host='0.0.0.0',port=80,debug=False)
