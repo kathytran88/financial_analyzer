@@ -1,6 +1,6 @@
 # Welcome to my project: Financial Analyzer
 
-## Hosted on AWS EC2: [View Live Server](http://3.135.214.34:5000/)<br>
+## Hosted on AWS EC2: [View Live Server](http://ec2-3-135-214-34.us-east-2.compute.amazonaws.com/)<br>
 
 ### Project Overview
 <b>1/ Robo-advisor</b><br>
